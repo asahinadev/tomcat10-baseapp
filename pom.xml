@@ -16,12 +16,17 @@
 	<url>http://www.example.com</url>
 
 	<properties>
+		<!-- java -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>12</maven.compiler.source>
 		<maven.compiler.target>12</maven.compiler.target>
-
+		
+		<!-- baseapp -->
 		<logback.version>1.2.3</logback.version>
 		
+		<!-- runtime -->
+		<mysql-connector-java.version>8.0.19</mysql-connector-java.version>
+
 		<!-- provided / test -->
 		<tomcat.version>10.0.0-M4</tomcat.version>
 		<junit5.version>5.6.2</junit5.version>
@@ -44,6 +49,15 @@
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.19</version>
+			<scope>runtime</scope>
+		</dependency>
+		
 		
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
