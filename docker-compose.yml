@@ -1,0 +1,23 @@
+version: "3"
+
+# サービス設定
+services:
+
+  # tomcat
+  tomcat:
+  
+    # ビルドディレクトリ
+    build:
+      context: docker/tomcat
+    
+    # ポート定義  
+    ports:
+    - 32770:8080
+    
+    volumes:
+    - ./target/example01.war:/usr/local/tomcat/current/webapps/example01.war
+    - ./docker/tomcat/context.xml:/usr/local/tomcat/current/conf/context.xml
+    - ./docker/tomcat/server.xml:/usr/local/tomcat/current/conf/server.xml
+    - ./docker/tomcat/tomcat-users.xml:/usr/local/tomcat/current/conf/tomcat-users.xml
+    - ./docker/tomcat/web.xml:/usr/local/tomcat/current/conf/web.xml
+    
