@@ -2,6 +2,23 @@ version: "3"
 
 # サービス設定
 services:
+  db:
+    # ビルドディレクトリ
+    build:
+      context: docker/db
+    
+    # ポート定義  
+    ports:
+    - 32771:3306
+    - 32772:33060
+
+    # 環境変数
+    environment:
+        TZ:                  Asia/Tokyo
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE:      tomcat
+        MYSQL_USER:          tomcat
+        MYSQL_PASSWORD:      tomcat
 
   # tomcat
   tomcat:
@@ -14,10 +31,17 @@ services:
     ports:
     - 32770:8080
     
+    # ボリューム設定
     volumes:
     - ./target/example01.war:/usr/local/tomcat/current/webapps/example01.war
     - ./docker/tomcat/context.xml:/usr/local/tomcat/current/conf/context.xml
     - ./docker/tomcat/server.xml:/usr/local/tomcat/current/conf/server.xml
     - ./docker/tomcat/tomcat-users.xml:/usr/local/tomcat/current/conf/tomcat-users.xml
     - ./docker/tomcat/web.xml:/usr/local/tomcat/current/conf/web.xml
+    - ./docker/tomcat/mysql-connector-java-8.0.19.jar:/usr/local/tomcat/current/lib/mysql-connector-java-8.0.19.jar
     
+    links:
+    - db
+    
+    depends_on:
+    - db

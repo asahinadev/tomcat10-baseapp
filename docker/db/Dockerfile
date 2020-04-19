@@ -1,0 +1,12 @@
+# DOCKER CONFIG
+FROM mysql:8.0.19
+
+# 開放するポートを設定
+EXPOSE 3306
+EXPOSE 33060
+
+ENV TZ="Asia/Tokyo"
+ENV MYSQL_ROOT_PASSWORD="password"
+ENV MYSQL_DATABASE="tomcat"
+ENV MYSQL_USER="tomcat"
+ENV MYSQL_PASSWORD="tomcat"
